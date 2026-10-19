@@ -1,0 +1,18 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Text to speech output",
+  "properties": {
+    "results": {
+      "type": "string",
+      "template": "{{links.apiDefaultDatasetUrl}}/items",
+      "title": "Results",
+      "description": "One item per text: voice, language, characters, duration and links to the audio and subtitle files."
+    },
+    "files": {
+      "type": "string",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys",
+      "title": "Audio and subtitle files",
+      "description": "MP3/WAV/Opus/M4A/FLAC audio and SRT/VTT subtitles in the run's key-value store."
+    }
+  }
+}

@@ -1,0 +1,4 @@
+This Actor runs the Kokoro-82M v1.0 text-to-speech model and voices (hexgrad/Kokoro-82M, Apache License 2.0)
+through the ONNX export and Python package kokoro-onnx (thewh1teagle/kokoro-onnx, MIT License).
+Phonemization uses espeak-ng (GPL-3.0) via the phonemizer and espeakng-loader packages, installed from PyPI at build time;
+they are not included in this repository.

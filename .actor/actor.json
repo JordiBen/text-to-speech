@@ -1,0 +1,81 @@
+{
+  "actorSpecification": 1,
+  "name": "text-to-speech",
+  "title": "Text to Speech: AI Voices, MP3 + SRT Subtitles, No API Key",
+  "description": "Turn text, scripts and Markdown into natural speech with the open Kokoro AI model: 41 voices in English (US/UK), Spanish, French, Italian, Portuguese and Hindi. MP3, WAV, Opus, M4A, FLAC plus SRT/VTT subtitles. Bulk, voice blending, no API key. $0.04 per 1,000 characters.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "views": {
+        "overview": {
+          "title": "Audio files",
+          "transformation": {
+            "fields": [
+              "id",
+              "voice",
+              "language",
+              "characters",
+              "durationSeconds",
+              "audioUrl",
+              "srtUrl",
+              "vttUrl",
+              "billedUnits",
+              "textPreview",
+              "error"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "id": {
+                "label": "ID"
+              },
+              "voice": {
+                "label": "Voice"
+              },
+              "language": {
+                "label": "Language"
+              },
+              "characters": {
+                "label": "Characters",
+                "format": "number"
+              },
+              "durationSeconds": {
+                "label": "Duration (s)",
+                "format": "number"
+              },
+              "audioUrl": {
+                "label": "Audio",
+                "format": "link"
+              },
+              "srtUrl": {
+                "label": "SRT",
+                "format": "link"
+              },
+              "vttUrl": {
+                "label": "VTT",
+                "format": "link"
+              },
+              "billedUnits": {
+                "label": "Billed x100 chars",
+                "format": "number"
+              },
+              "textPreview": {
+                "label": "Text"
+              },
+              "error": {
+                "label": "Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

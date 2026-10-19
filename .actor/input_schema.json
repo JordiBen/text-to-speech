@@ -1,0 +1,239 @@
+{
+  "title": "Text to speech input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "texts": {
+      "title": "Texts to read aloud",
+      "type": "array",
+      "editor": "stringList",
+      "sectionCaption": "Text",
+      "description": "One audio file per text. Plain text or Markdown (headings, bold, links and lists are cleaned up before reading). Up to 200,000 characters per text.",
+      "prefill": [
+        "Welcome to our channel! Today we test three website speed tools and show you which one is worth your time."
+      ]
+    },
+    "items": {
+      "title": "Or: items with id, voice and speed (JSON)",
+      "type": "array",
+      "editor": "json",
+      "description": "For batch jobs from code, a spreadsheet or n8n/Make/Zapier: [{\"id\": \"intro\", \"text\": \"...\", \"voice\": \"bm_george\", \"speed\": 1.1}]. id becomes the file name; voice and speed are optional and override the defaults below."
+    },
+    "textFileUrls": {
+      "title": "Or: links to .txt / .md files",
+      "type": "array",
+      "editor": "requestListSources",
+      "description": "Direct links to plain text or Markdown files (max 2 MB each), e.g. a chapter for an audiobook. Web pages are not read: convert them to text first."
+    },
+    "voice": {
+      "title": "Voice",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "af_heart",
+        "af_bella",
+        "af_nicole",
+        "af_aoede",
+        "af_kore",
+        "af_sarah",
+        "af_nova",
+        "af_sky",
+        "af_alloy",
+        "af_jessica",
+        "af_river",
+        "am_michael",
+        "am_fenrir",
+        "am_puck",
+        "am_echo",
+        "am_eric",
+        "am_liam",
+        "am_onyx",
+        "am_adam",
+        "am_santa",
+        "bf_emma",
+        "bf_isabella",
+        "bf_alice",
+        "bf_lily",
+        "bm_george",
+        "bm_fable",
+        "bm_lewis",
+        "bm_daniel",
+        "ef_dora",
+        "em_alex",
+        "em_santa",
+        "ff_siwis",
+        "hf_alpha",
+        "hf_beta",
+        "hm_omega",
+        "hm_psi",
+        "if_sara",
+        "im_nicola",
+        "pf_dora",
+        "pm_alex",
+        "pm_santa"
+      ],
+      "enumTitles": [
+        "Heart (US female, warm, best overall)",
+        "Bella (US female, expressive)",
+        "Nicole (US female, soft/ASMR)",
+        "Aoede (US female)",
+        "Kore (US female)",
+        "Sarah (US female)",
+        "Nova (US female)",
+        "Sky (US female)",
+        "Alloy (US female)",
+        "Jessica (US female)",
+        "River (US female)",
+        "Michael (US male)",
+        "Fenrir (US male, deep)",
+        "Puck (US male, lively)",
+        "Echo (US male)",
+        "Eric (US male)",
+        "Liam (US male)",
+        "Onyx (US male)",
+        "Adam (US male)",
+        "Santa (US male, jolly)",
+        "Emma (UK female)",
+        "Isabella (UK female)",
+        "Alice (UK female)",
+        "Lily (UK female)",
+        "George (UK male)",
+        "Fable (UK male, storyteller)",
+        "Lewis (UK male)",
+        "Daniel (UK male)",
+        "Dora (Spanish female)",
+        "Alex (Spanish male)",
+        "Santa (Spanish male)",
+        "Siwis (French female)",
+        "Alpha (Hindi female)",
+        "Beta (Hindi female)",
+        "Omega (Hindi male)",
+        "Psi (Hindi male)",
+        "Sara (Italian female)",
+        "Nicola (Italian male)",
+        "Dora (Portuguese BR female)",
+        "Alex (Portuguese BR male)",
+        "Santa (Portuguese BR male)"
+      ],
+      "default": "af_heart",
+      "sectionCaption": "Voice",
+      "description": "41 voices in 7 languages. The first letter sets the language: a = US English, b = UK English, e = Spanish, f = French, h = Hindi, i = Italian, p = Brazilian Portuguese."
+    },
+    "voiceBlend": {
+      "title": "Voice blend (optional)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Mix voices of the same language into a unique custom voice, e.g. af_heart:0.6, af_bella:0.4. Leave empty to use the voice above."
+    },
+    "speed": {
+      "title": "Speed",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "0.75",
+        "0.85",
+        "0.9",
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.35",
+        "1.5"
+      ],
+      "default": "1.0",
+      "description": "Speaking rate (1.0 = natural). Items can set any value from 0.5 to 2.0."
+    },
+    "format": {
+      "title": "Audio format",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "mp3",
+        "wav",
+        "opus",
+        "m4a",
+        "flac"
+      ],
+      "enumTitles": [
+        "MP3 (works everywhere)",
+        "WAV (uncompressed, for editing)",
+        "Opus in OGG (smallest, WhatsApp/Telegram voice notes)",
+        "M4A / AAC (Apple, iOS)",
+        "FLAC (lossless)"
+      ],
+      "default": "mp3",
+      "sectionCaption": "Output",
+      "description": "MP3 works everywhere. Opus is the smallest; M4A suits Apple devices; WAV and FLAC are lossless for editing."
+    },
+    "bitrate": {
+      "title": "Bitrate (kbps)",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "48",
+        "64",
+        "96",
+        "128",
+        "192",
+        "256"
+      ],
+      "default": "128",
+      "description": "For MP3, Opus and M4A. 64 is fine for speech in Opus; 128 for MP3."
+    },
+    "subtitles": {
+      "title": "Subtitles",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "srt",
+        "vtt",
+        "both",
+        "none"
+      ],
+      "enumTitles": [
+        "SRT",
+        "WebVTT",
+        "SRT + WebVTT",
+        "None"
+      ],
+      "default": "srt",
+      "description": "Sentence-level subtitle files with exact timings (we time every sentence as it is generated). Free."
+    },
+    "mergeIntoOneFile": {
+      "title": "Also merge all texts into one file",
+      "type": "boolean",
+      "default": false,
+      "description": "Adds all-texts.<format> (and merged subtitles) to the key-value store, with 1 s between texts. Handy for audiobooks and playlists. Free."
+    },
+    "stripMarkdown": {
+      "title": "Clean up Markdown",
+      "type": "boolean",
+      "default": true,
+      "sectionCaption": "Advanced",
+      "description": "Removes Markdown/HTML symbols, code blocks and link URLs so they are not read aloud. Turn off for plain text that uses * or # on purpose."
+    },
+    "sentencePauseMs": {
+      "title": "Pause between sentences (ms)",
+      "type": "integer",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 3000,
+      "default": 250,
+      "description": "Extra silence between sentences. 250 ms sounds natural; raise it for slow, calm narration."
+    },
+    "paragraphPauseMs": {
+      "title": "Pause between paragraphs (ms)",
+      "type": "integer",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 5000,
+      "default": 600,
+      "description": "Extra silence between paragraphs (blank lines) and after headings."
+    },
+    "includeSentenceTimings": {
+      "title": "Include sentence timings in the dataset",
+      "type": "boolean",
+      "default": false,
+      "description": "Adds a sentences array (start, end, text) to every result, e.g. for karaoke-style captions or video editors."
+    }
+  }
+}
